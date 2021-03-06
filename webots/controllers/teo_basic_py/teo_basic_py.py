@@ -1,7 +1,5 @@
 """teo_basic_py controller."""
 
-# You may need to import some classes of the controller module. Ex:
-#  from controller import Robot, Motor, DistanceSensor
 from controller import Robot
 
 # create the Robot instance.
@@ -14,29 +12,13 @@ print(n_devices) # 56
 for i in range(n_devices):
     print(robot.getDeviceByIndex(i).getName())
 
-r_shoulder_yaw = robot.getDevice("r_shoulder_yaw");
-print(r_shoulder_yaw)
+r_shoulder_pitch = robot.getDevice("r_shoulder_pitch");
 
 # get the time step of the current world.
 timestep = int(robot.getBasicTimeStep())
-
-# You should insert a getDevice-like function in order to get the
-# instance of a device of the robot. Something like:
-#  motor = robot.getDevice('motorname')
-#  ds = robot.getDevice('dsname')
-#  ds.enable(timestep)
+print(timestep) # 32
 
 # Main loop:
 # - perform simulation steps until Webots is stopping the controller
 while robot.step(timestep) != -1:
-    # Read the sensors:
-    # Enter here functions to read sensor data, like:
-    #  val = ds.getValue()
-
-    # Process sensor data here.
-
-    # Enter here functions to send actuator commands, like:
-    #  motor.setPosition(10.0)
-    pass
-
-# Enter here exit cleanup code.
+    r_shoulder_pitch.setPosition(45.0*3.14/180.0)
