@@ -7,6 +7,13 @@ from controller import Robot
 # create the Robot instance.
 robot = Robot()
 
+# list devices of robot.
+n_devices = robot.getNumberOfDevices()
+print(n_devices) # 56
+
+for i in range(n_devices):
+    print(robot.getDeviceByIndex(i).getName())
+
 # get the time step of the current world.
 timestep = int(robot.getBasicTimeStep())
 
