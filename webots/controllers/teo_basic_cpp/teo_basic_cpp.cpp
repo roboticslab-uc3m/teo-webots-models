@@ -2,6 +2,7 @@
 
 #include <webots/Robot.hpp>
 #include <webots/Device.hpp>
+#include <webots/Motor.hpp>
 
 #include <iostream>
 
@@ -17,34 +18,20 @@ int main(int argc, char **argv)
   for(int i=0; i<n_devices; i++)
     std::cout << robot->getDeviceByIndex(i)->getName() << std::endl;
 
-  webots::Device* r_shoulder_pitch = robot->getDevice("r_shoulder_pitch");
+  webots::Motor* r_shoulder_pitch = robot->getMotor("r_shoulder_pitch");
 
   // get the time step of the current world.
   int timeStep = (int)robot->getBasicTimeStep();
   std::cout << timeStep << std::endl; // 32
 
-  // You should insert a getDevice-like function in order to get the
-  // instance of a device of the robot. Something like:
-  //  Motor *motor = robot->getMotor("motorname");
-  //  DistanceSensor *ds = robot->getDistanceSensor("dsname");
-  //  ds->enable(timeStep);
-
   // Main loop:
   // - perform simulation steps until Webots is stopping the controller
   while (robot->step(timeStep) != -1)
   {
-    // Read the sensors:
-    // Enter here functions to read sensor data, like:
-    //  double val = ds->getValue();
-
-    // Process sensor data here.
-
-    // Enter here functions to send actuator commands, like:
-    //  motor->setPosition(10.0);
+    r_shoulder_pitch->setPosition(45.0*3.14/180.0);
   };
 
-  // Enter here exit cleanup code.
-
+  // Exit cleanup code here.
   delete robot;
   return 0;
 }
