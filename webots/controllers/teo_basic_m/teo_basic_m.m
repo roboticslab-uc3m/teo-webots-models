@@ -15,12 +15,12 @@ end
 
 r_shoulder_pitch = wb_robot_get_device('r_shoulder_pitch');
 
-TIME_STEP = 64;
+% get the time step of the current world.
+timestep = wb_robot_get_basic_time_step();
+wb_console_print(int2str(timestep), WB_STDOUT); % 32
 
-% main loop:
+% Main loop:
 % - perform simulation steps until Webots is stopping the controller
-while wb_robot_step(TIME_STEP) ~= -1
-
+while wb_robot_step(timestep) ~= -1
   wb_motor_set_position(r_shoulder_pitch, 45.0*3.14/180.0);
-
 end
