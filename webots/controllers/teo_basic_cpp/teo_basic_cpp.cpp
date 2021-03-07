@@ -1,8 +1,9 @@
 // teo_basic_cpp controller.
 
-#include <iostream>
-
 #include <webots/Robot.hpp>
+#include <webots/Device.hpp>
+
+#include <iostream>
 
 int main(int argc, char **argv)
 {
@@ -12,6 +13,11 @@ int main(int argc, char **argv)
   // list devices of robot.
   int n_devices = robot->getNumberOfDevices();
   std::cout << n_devices << std::endl; // 56
+
+  for(int i=0; i<n_devices; i++)
+    std::cout << robot->getDeviceByIndex(i)->getName() << std::endl;
+
+  webots::Device* r_shoulder_pitch = robot->getDevice("r_shoulder_pitch");
 
   // get the time step of the current world.
   int timeStep = (int)robot->getBasicTimeStep();
