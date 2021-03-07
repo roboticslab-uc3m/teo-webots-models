@@ -8,6 +8,11 @@
 n_devices = wb_robot_get_number_of_devices();
 wb_console_print(int2str(n_devices), WB_STDOUT); % 56
 
+for i = 1:n_devices
+  device_tmp = wb_robot_get_device_by_index(i);
+  wb_console_print(wb_device_get_name(device_tmp), WB_STDOUT);
+end
+
 r_shoulder_pitch = wb_robot_get_device('r_shoulder_pitch');
 
 TIME_STEP = 64;
