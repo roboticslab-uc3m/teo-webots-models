@@ -1,15 +1,17 @@
-// File:          teo_basic_cpp.cpp
+// teo_basic_cpp controller.
 
 #include <iostream>
 
 #include <webots/Robot.hpp>
 
-using namespace webots;
-
 int main(int argc, char **argv)
 {
   // create the Robot instance.
-  Robot *robot = new Robot();
+  webots::Robot *robot = new webots::Robot();
+
+  // list devices of robot.
+  int n_devices = robot->getNumberOfDevices();
+  std::cout << n_devices << std::endl; // 56
 
   // get the time step of the current world.
   int timeStep = (int)robot->getBasicTimeStep();
