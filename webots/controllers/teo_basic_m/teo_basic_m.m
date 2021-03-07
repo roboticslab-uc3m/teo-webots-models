@@ -4,16 +4,16 @@
 %desktop;
 %keyboard;
 
+wb_console_print('Hello!', WB_STDOUT);
+
 TIME_STEP = 64;
 
-%  motor = wb_robot_get_device('motor');
+r_shoulder_pitch = wb_robot_get_device('r_shoulder_pitch');
 
 % main loop:
-% perform simulation steps of TIME_STEP milliseconds
-% and leave the loop when Webots signals the termination
-%
+% - perform simulation steps until Webots is stopping the controller
 while wb_robot_step(TIME_STEP) ~= -1
 
-  %  wb_motor_set_postion(motor, 10.0);
+  wb_motor_set_position(r_shoulder_pitch, 45.0*3.14/180.0);
 
 end
