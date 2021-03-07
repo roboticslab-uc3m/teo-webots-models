@@ -4,11 +4,13 @@
 %desktop;
 %keyboard;
 
-wb_console_print('Hello!', WB_STDOUT);
-
-TIME_STEP = 64;
+% list devices of robot.
+n_devices = wb_robot_get_number_of_devices();
+wb_console_print(int2str(n_devices), WB_STDOUT); % 56
 
 r_shoulder_pitch = wb_robot_get_device('r_shoulder_pitch');
+
+TIME_STEP = 64;
 
 % main loop:
 % - perform simulation steps until Webots is stopping the controller
